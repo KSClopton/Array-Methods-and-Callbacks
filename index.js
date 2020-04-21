@@ -80,25 +80,34 @@ function getAllWinners(getWinners, getYears) {
 console.log(getAllWinners(getWinners, getYears));
 
 
-/* Task 7: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had. 
+/* Task 7: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` 
+and returns the number of world cup wins that country has had. 
 
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
 function getCountryWins(data, ti) {
-    function getWinners(cb, data) {
+    function getTiFinals(cb, data) {
         const countryWinners = [];
         cb(data).forEach(function(item){
             if(item["Home Team Goals"] > item["Away Team Goals"]){
-                countryWinners.push(item["Home Team Name"]);
-        }else if(item["Away Team Goals"] > item["Home Team Goals"]){
-                countryWinners.push(item["Away Team Name"]);
-        }else{
+                countryWinners.push(item["Home Team Initials"]);
+            }else if(item["Away Team Goals"] > item["Home Team Goals"]){
+                countryWinners.push(item["Away Team Initials"]);
+            }else{
                 countryWinners.push(item["Win conditions"].split(" ")[0]);
-        }
-        })
-        return winners;
-    };
+            }
+        });  
+        const years = getYears(getFinals, fifaData);
+    const tiFinals = [];
+        years.forEach(function(item, i){
+            tiFinals.push(item, countryWinners[i]);
+        }); return tiFinals;
+    }; 
+    tiFinals.reduce(acc,
+        
+    // console.log(getTiFinals(getFinals, fifaData));
+}
 getCountryWins();
 
 
